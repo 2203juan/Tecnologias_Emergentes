@@ -17,10 +17,13 @@ class Restaurant(db.Model):
     categoria = db.Column(db.String(100), nullable = False)
     lugar = db.Column(db.String(100), nullable = False)
     direccion = db.Column(db.String(100), nullable = False)
+    menu = db.Column(db.Text(), nullable = False)
     telefono = db.Column(db.String(20), nullable = False)
     domicilio = db.Column(db.Boolean, nullable = False)
     fecha = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)   
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable = False)
 
     def __repr__(self) -> str:
-        return self.nombre
+        info  = "Nombre: {},Categoria: {}, Lugar: {}, Direccion: {},Menú: {},Teléfono: {},Domicilio:{}".format(self.nombre, self.categoria, self.lugar, self.direccion, self.menu,
+        self.telefono, "Si" if self.domicilio == True else "No")
+        return info

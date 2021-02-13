@@ -6,6 +6,12 @@ from flask_login import login_user, logout_user, login_required, current_user
 from .models import User
 from . import db
 
+import jwt
+import datetime
+
+from functools import wraps
+
+
 auth = Blueprint("auth",__name__)
 
 @auth.route("/registro")
@@ -45,10 +51,31 @@ def login_post():
 
     else:
         login_user(user)
-        return redirect(url_for("main.profile"))
+        token = jwt.encode({'user': user.nombre,'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes = 5)}, "secret_key")
+
+        return token
+
+# JWT FUNCTIONS
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.args.get('token')
+
+        if not token:
+            return "Falta el token!!, ingresalo despues de la ruta; ruta?token = xxxxx", 403
+        
+        try:
+            data = jwt.decode(token, "secret_key")
+
+        except:
+            return "Token no válido!!",403
+
+        return f(*args, **kwargs) 
+    return decorated
 
 @auth.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("main.index"))
+    return "Logout exitoso"

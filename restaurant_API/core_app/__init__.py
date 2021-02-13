@@ -11,8 +11,9 @@ def create_app():
     app = Flask(__name__)
 
     # some app settings
-    app.config["SECRET_KEY"] = "secret-key"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+    app.config["SECRET_KEY"] = "secret_key"
+    #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root@localhost/restaurante"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # database init
