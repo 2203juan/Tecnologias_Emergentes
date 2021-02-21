@@ -1,0 +1,19 @@
+{
+    "nombre" : "Asados de Segundo",
+    "categoria": "Comida Típica",
+    "lugar": "Chipichape",
+    "direccion": "Avenida 6ta #27-89",
+    "menu" : "Carnes de Res + Papas + Limonada, Picada 3 carnes + Jarra Limonada",
+    "telefono" : "3158956243",
+    "domicilio": "False"
+}
+
+{
+    "nombre" : "MacDonalds",
+    "categoria": "Comida Rápida",
+    "lugar": "Ciudad Jardín",
+    "direccion": "Avenida Cañasgordas #118-18",
+    "menu" : "BigMac + queso + cocacola, Cuarto de libra en combo, Helado, Papas",
+    "telefono" : "3157729287",
+    "domicilio": "True"
+}
